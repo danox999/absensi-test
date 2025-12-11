@@ -1,8 +1,8 @@
 [build]
-builder = "heroku/buildpacks:20"
+builder = "nixpacks"
 
-[[build.buildpacks]]
-uri = "heroku/php"
+[deploy]
+start = "php artisan serve --host=0.0.0.0 --port=$PORT"
 
 [env]
 PHP_VERSION = "8.3"
