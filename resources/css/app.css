@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Floating Action Button (FAB) Styles */
+.fab {
+    position: fixed;
+    bottom: 5rem;
+    right: 1rem;
+    z-index: 40;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.fab:hover {
+    transform: scale(1.1);
+}
+
+.fab:active {
+    transform: scale(0.95);
+}
+
+/* Safe area untuk FAB di mobile */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .fab {
+        bottom: calc(5rem + env(safe-area-inset-bottom));
+    }
+}
+
+@layer base {
+    /* Mobile optimizations */
+    html {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-text-size-adjust: 100%;
+    }
+    
+    body {
+        overscroll-behavior-y: none;
+    }
+    
+    /* Better touch targets for mobile */
+    button, a {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+@layer utilities {
+    /* Mobile-friendly video */
+    video {
+        object-fit: cover;
+    }
+    
+    /* Smooth scrolling */
+    .smooth-scroll {
+        scroll-behavior: smooth;
+    }
+    
+    /* Safe area for mobile notch */
+    @supports (padding: max(0px)) {
+        .safe-area-inset {
+            padding-left: max(1rem, env(safe-area-inset-left));
+            padding-right: max(1rem, env(safe-area-inset-right));
+        }
+        
+        .safe-bottom {
+            padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+        }
+    }
+    
+    /* Bottom navigation spacing */
+    @media (max-width: 768px) {
+        body {
+            padding-bottom: 4rem; /* Space for bottom nav */
+        }
+    }
+}
